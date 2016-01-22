@@ -1,6 +1,6 @@
 # Demo Thelia Net
 
-Add a short description here. You can also add a screenshot if needed.
+This module add some features and some restrictions to the demonstration website.
 
 ## Installation
 
@@ -19,37 +19,17 @@ composer require your-vendor/demo-thelia-net-module:~1.0
 
 ## Usage
 
-Explain here how to use your module, how to configure it, etc.
+This module prevents the activation, desactivation, deletion, update and configuration of any over module.
+It also prevents from doing anything to the Thelia system variables and the only action allowed on the languages is the update.
 
-## Hook
+The module prefills the connexion fields of the admin and the customer with datas that you can update in the module configuration.
+By default :
 
-If your module use one or more hook, fill this part. Explain which hooks are used.
+the admin username : thelia2
+the admin password : thelia2
+
+the customer email : test@thelia.net
+the customer password : thelia
 
 
-## Loop
 
-If your module declare one or more loop, describe them here like this :
-
-[loop name]
-
-### Input arguments
-
-|Argument |Description |
-|---      |--- |
-|**arg1** | describe arg1 with an exemple. |
-|**arg2** | describe arg2 with an exemple. |
-
-### Output arguments
-
-|Variable   |Description |
-|---        |--- |
-|$VAR1    | describe $VAR1 variable |
-|$VAR2    | describe $VAR2 variable |
-
-### Exemple
-
-Add a complete exemple of your loop
-
-## Other ?
-
-If you have other think to put, feel free to complete your readme as you want.

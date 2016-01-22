@@ -10,26 +10,40 @@
 /*      file that was distributed with this source code.                             */
 /*************************************************************************************/
 
-namespace DemoTheliaNet;
+namespace DemoTheliaNet\Controller;
 
-use DemoTheliaNet\Model\Config\DemoTheliaNetConfigValue;
-use Propel\Runtime\Connection\ConnectionInterface;
-use Thelia\Module\BaseModule;
+use DemoTheliaNet\DemoTheliaNet;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Thelia\Controller\Admin\BaseAdminController;
+use Thelia\Core\Security\AccessManager;
+use Thelia\Core\Security\Resource\AdminResources;
+use Thelia\Tools\URL;
 
 /**
- * Class DemoTheliaNet
- * @package DemoTheliaNet
+ * Class RedirectActionOnModule
+ * @package DemoTheliaNet\Controller
  * @author Thomas Arnaud <tarnaud@openstudio.fr>
  */
-class DemoTheliaNet extends BaseModule
+class RedirectActionOnModule extends BaseAdminController
 {
-    const DOMAIN_NAME = 'demothelianet';
-
-    public function postActivation(ConnectionInterface $con = null)
+    public function redirect()
     {
-        DemoTheliaNet::setConfigValue(DemoTheliaNetConfigValue::ADMIN_PASSWORD, "thelia2");
-        DemoTheliaNet::setConfigValue(DemoTheliaNetConfigValue::ADMIN_USERNAME, "thelia2");
-        DemoTheliaNet::setConfigValue(DemoTheliaNetConfigValue::CUSTOMER_EMAIL, "test@thelia.net");
-        DemoTheliaNet::setConfigValue(DemoTheliaNetConfigValue::CUSTOMER_PASSWORD, "thelia");
+        if (null !== $response = $this->checkAuth(
+            AdminResources::MODULE,
+            [DemoTheliaNet::DOMAIN_NAME],
+            AccessManager::UPDATE
+        )) {
+            return $response;
+        }
+
+        return $this->redirectToModulesPage();
+    }
+
+    /**
+     * Redirect to the configuration page
+     */
+    protected function redirectToModulesPage()
+    {
+        return RedirectResponse::create(URL::getInstance()->absoluteUrl('/admin/modules'));
     }
 }

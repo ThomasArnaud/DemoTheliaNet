@@ -4,28 +4,120 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <!--
-
-    if a /admin/module/demothelianet/ route is provided, a "Configuration" button will be displayed
-    for the module in the module list. Clicking this button will invoke this route.
-
-    <route id="my_route_id" path="/admin/module/demothelianet">
-        <default key="_controller">DemoTheliaNet\Full\Class\Name\Of\YourConfigurationController::methodName</default>
+    <!-- DemoTheliaNet Update Configuration Root-->
+    <route id="demothelianet.save.configuration" path="/admin/module/DemoTheliaNet/save" methods="post">
+        <default key="_controller">DemoTheliaNet\Controller\Configuration::editConfiguration</default>
     </route>
 
-    <route id="my_route_id" path="/admin/module/demothelianet/route-name">
-        <default key="_controller">DemoTheliaNet\Full\Class\Name\Of\YourAdminController::methodName</default>
+    <!-- Modules Roots crushing -->
+    <route id="admin.module.update" path="/admin/module/update/{module_id}">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnModule::redirect</default>
+        <requirement key="module_id">\d+</requirement>
     </route>
 
-    <route id="my_route_id" path="/my/route/name">
-        <default key="_controller">DemoTheliaNet\Full\Class\Name\Of\YourOtherController::methodName</default>
+    <route id="admin.module.save" path="/admin/module/save">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnModule::redirect</default>
     </route>
 
-    ...add as many routes as required.
-
-    <route>
-    ...
+    <route id="admin.module.toggle-activation" path="/admin/module/toggle-activation/{module_id}">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnModule::redirect</default>
+        <requirement key="module_id">\d+</requirement>
     </route>
-    -->
+
+    <route id="admin.module.delete" path="/admin/module/delete">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnModule::redirect</default>
+    </route>
+
+    <route id="admin.module.update-position" path="/admin/module/update-position">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnModule::redirect</default>
+    </route>
+
+    <route id="admin.module.install" path="/admin/module/install" methods="post">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnModule::redirect</default>
+    </route>
+
+    <route id="admin.module.information" path="/admin/module/information/{module_id}">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnModule::redirect</default>
+        <requirement key="module_id">\d+</requirement>
+    </route>
+
+    <route id="admin.module.documentation" path="/admin/module/documentation/{module_id}">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnModule::redirect</default>
+        <requirement key="module_id">\d+</requirement>
+    </route>
+
+    <route id="admin.module.configure" path="/admin/module/{module_code}">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnModule::redirect</default>
+    </route>
+
+    <!-- Variables Roots Crushing -->
+    <route id="admin.configuration.variables.update-values" path="/admin/configuration/variables/update-values">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnVariable::redirect</default>
+    </route>
+
+    <route id="admin.configuration.variables.create" path="/admin/configuration/variables/create">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnVariable::redirect</default>
+    </route>
+
+    <route id="admin.configuration.variables.update" path="/admin/configuration/variables/update">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnVariable::redirect</default>
+    </route>
+
+    <route id="admin.configuration.variables.save" path="/admin/configuration/variables/save">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnVariable::redirect</default>
+    </route>
+
+    <route id="admin.configuration.variables.delete" path="/admin/configuration/variables/delete">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnVariable::redirect</default>
+    </route>
+
+    <!-- Languages Roots Crushing -->
+    <route id="admin.configuration.languages" path="/admin/configuration/Languages">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnLanguage::redirect</default>
+    </route>
+
+    <route id="admin.configuration.languages.update.process" path="/admin/configuration/languages/save/{lang_id}">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnLanguage::redirect</default>
+        <requirement key="lang_id">\d+</requirement>
+    </route>
+
+    <route id="admin.configuration.languages.toggleDefault" path="/admin/configuration/languages/toggleDefault/{lang_id}">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnLanguage::redirect</default>
+        <requirement key="lang_id">\d+</requirement>
+    </route>
+
+    <route id="admin.configuration.languages.toggleActive" path="/admin/configuration/languages/toggleActive/{lang_id}">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnLanguage::redirect</default>
+        <requirement key="lang_id">\d+</requirement>
+    </route>
+
+    <route id="admin.configuration.languages.toggleVisible" path="/admin/configuration/languages/toggleVisible/{lang_id}">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnLanguage::redirect</default>
+        <requirement key="lang_id">\d+</requirement>
+    </route>
+
+    <route id="admin.configuration.languages.add" path="/admin/configuration/languages/add">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnLanguage::redirect</default>
+    </route>
+
+    <route id="admin.configuration.languages.delete" path="/admin/configuration/languages/delete">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnLanguage::redirect</default>
+    </route>
+
+    <route id="admin.configuration.languages.defaultBehavior" path="/admin/configuration/languages/defaultBehavior">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnLanguage::redirect</default>
+    </route>
+
+    <route id="admin.configuration.languages.updateUrl" path="/admin/configuration/languages/updateUrl">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnLanguage::redirect</default>
+    </route>
+
+    <route id="admin.configuration.languages.domain.activation" path="/admin/configuration/languages/domain/activate">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnLanguage::redirect</default>
+    </route>
+
+    <route id="admin.configuration.languages.domain.deactivation" path="/admin/configuration/languages/domain/deactivate">
+        <default key="_controller">DemoTheliaNet\Controller\RedirectActionOnLanguage::redirect</default>
+    </route>
 
 </routes>
